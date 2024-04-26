@@ -1,0 +1,26 @@
+{
+  "name": "backend",
+  "version": "1.0.0",
+  "description": "Api RESTful",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Carloxxz/Frameworks.git"
+  },
+  "author": "Carlos Enrique Martínez Martínez",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Carloxxz/Frameworks/issues"
+  },
+  "homepage": "https://github.com/Carloxxz/Frameworks#readme",
+  "dependencies": {
+    "body-parser": "^1.20.2",
+    "connect-multiparty": "^2.2.0",
+    "express": "^4.19.2",
+    "mongoose": "^8.3.2",
+    "validator": "^13.11.0"
+  }
+}
