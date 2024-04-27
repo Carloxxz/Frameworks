@@ -167,8 +167,33 @@ const controller = {
                 message: 'Error al actualizar el artículo',
             });
         }
-    }
+    },
 
+    delete: async (req, res) => {
+        const id = req.params.id
+
+        try {
+            const ArticleDelete = await Article.findOneAndDelete({ _id: id })
+
+            if (!ArticleDelete) {
+                return res.status(404).send({
+                    status: 'error',
+                    message: 'Error al borrar'
+                })
+            }
+
+            return res.status(200).send({
+                status: 'succes',
+                article: ArticleDelete
+            })
+
+        } catch (error) {
+            return res.status(404).send({
+                status: 'error',
+                message: 'Error al borrar'
+            })
+        }
+    }
 }
 
 export { controller };
