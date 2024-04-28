@@ -19,5 +19,7 @@ router.get('/article/:id', controller.getArticle)
 router.put('/article/:id', controller.update)
 router.delete('/article/:id', controller.delete)
 router.post('/upload-img/:id', mdUpload, controller.upload)
+router.get('//get-img/:image', controller.getImage)
+router.get('/search/:search', controller.search)
 
 export { router }

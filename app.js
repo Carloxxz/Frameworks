@@ -15,6 +15,7 @@ app.use(bodyParser.json())
 
 // CORS
 
+
 //añadir prefijos a rutas
 app.use('/api', router)
 

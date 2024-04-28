@@ -1,4 +1,6 @@
 import validator from 'validator';
+import fs from 'fs'
+import path from 'path';
 import { Article } from '../models/article.js';
 
 const controller = {
@@ -225,10 +227,14 @@ const controller = {
         // Validar la extensión si es necesario
         const allowedExtensions = ['jpg', 'jpeg', 'png', 'gif'];  // Ejemplo de extensiones permitidas
         if (!allowedExtensions.includes(fileExtend.toLowerCase())) {
-            return res.status(400).send({
-                status: 'error',
-                message: 'Extensión de archivo no permitida',
-            });
+
+            fs.unlink(filePath, (err) => {
+                return res.status(400).send({
+                    status: 'error',
+                    message: 'Extensión de archivo no permitida',
+                });
+            })
+
         }
 
         // Respuesta exitosa
@@ -238,8 +244,66 @@ const controller = {
             fileName,
             fileExtend,
         });
-    }
+    },
 
+    getImage: async (req, res) => {
+        const filePath = '/path/to/file.txt';
+
+        try {
+            // Verificar si el archivo es accesible
+            await fs.access(filePath);
+
+            // Enviar el archivo si existe
+            return res.sendFile(path.resolve(filePath));
+        } catch (err) {
+            if (err.code === 'ENOENT') {
+                return res.status(404).send({
+                    status: 'error',
+                    message: 'No existe',  // Error si el archivo no se encuentra
+                });
+            } else {
+                console.error('Error al verificar el archivo:', err);  // Otros errores
+                return res.status(500).send({
+                    status: 'error',
+                    message: 'Error al intentar enviar el archivo',
+                });
+            }
+        }
+
+    },
+
+    search: async (req, res) => {
+        // string a buscar
+        const searchString = req.params.search
+
+
+        try {
+            const articles = await Article.find({
+                "$or": [
+                    { "title": { "$regex": searchString, "$options": "i" } },
+                    { "content": { "$regex": searchString, "$options": "i" } },
+                ],
+            })
+                .sort([['date', 'descending']]);  // Ordenamos por fecha descendente
+
+            if (!articles || articles.length === 0) {  // Verificamos si hay resultados
+                return res.status(404).send({
+                    status: 'error',
+                    message: 'No hay artículos',
+                });
+            }
+
+            return res.status(200).send({
+                status: 'success',
+                articles,
+            });
+        } catch (err) {
+            return res.status(500).send({
+                status: 'error',
+                message: 'Error en la petición',
+            });
+        }
+    }
 }
 
 export { controller };
