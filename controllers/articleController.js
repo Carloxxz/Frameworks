@@ -193,7 +193,53 @@ const controller = {
                 message: 'Error al borrar'
             })
         }
+    },
+
+    upload: (req, res) => {
+        const fileDefault = 'Imagen no subida...';
+
+        if (!req.files || !req.files.file0) {  // Verificar si 'file0' existe
+            return res.status(404).send({
+                status: 'error',
+                message: fileDefault,
+            });
+        }
+
+        const filePath = req.files.file0.path;
+
+        if (!filePath) {  // Verificar si 'filePath' está disponible
+            return res.status(404).send({
+                status: 'error',
+                message: 'No se pudo obtener la ruta del archivo',
+            });
+        }
+
+        const fileSplit = filePath.split('/');  // Corregir la división del nombre del archivo
+
+        const fileName = fileSplit[fileSplit.length - 1];  // Obtener el último elemento como nombre del archivo
+
+        const extendSplit = fileName.split('.');  // Corregir la división para la extensión
+
+        const fileExtend = extendSplit[extendSplit.length - 1];  // Último elemento es la extensión
+
+        // Validar la extensión si es necesario
+        const allowedExtensions = ['jpg', 'jpeg', 'png', 'gif'];  // Ejemplo de extensiones permitidas
+        if (!allowedExtensions.includes(fileExtend.toLowerCase())) {
+            return res.status(400).send({
+                status: 'error',
+                message: 'Extensión de archivo no permitida',
+            });
+        }
+
+        // Respuesta exitosa
+        return res.status(200).send({
+            fichero: req.files,
+            split: fileSplit,
+            fileName,
+            fileExtend,
+        });
     }
+
 }
 
 export { controller };
