@@ -197,53 +197,88 @@ const controller = {
         }
     },
 
-    upload: (req, res) => {
+    upload: async (req, res) => {
         const fileDefault = 'Imagen no subida...';
 
-        if (!req.files || !req.files.file0) {  // Verificar si 'file0' existe
+        // Verificar si hay archivos en la solicitud
+        if (!req.files || !req.files.file0) {
             return res.status(404).send({
                 status: 'error',
                 message: fileDefault,
             });
         }
 
-        const filePath = req.files.file0.path;
+        const file_path = req.files.file0.path;
 
-        if (!filePath) {  // Verificar si 'filePath' está disponible
+        // Verificar si el archivo tiene un nombre correcto
+        if (!file_path) {
             return res.status(404).send({
                 status: 'error',
                 message: 'No se pudo obtener la ruta del archivo',
             });
         }
 
-        const fileSplit = filePath.split('/');  // Corregir la división del nombre del archivo
+        const file_split = path.normalize(file_path).split(path.sep);  // Normalizar y dividir la ruta
+        const file_name = file_split[file_split.length - 1];  // Obtener el nombre del archivo
+        const extension_split = file_name.split('.');  // Dividir para obtener la extensión
+        const file_ext = extension_split[extension_split.length - 1].toLowerCase();  // Extensión en minúsculas
 
-        const fileName = fileSplit[fileSplit.length - 1];  // Obtener el último elemento como nombre del archivo
+        const allowedExtensions = ['jpg', 'jpeg', 'png', 'gif'];  // Extensiones permitidas
 
-        const extendSplit = fileName.split('.');  // Corregir la división para la extensión
+        if (!allowedExtensions.includes(file_ext)) {  // Verificar si la extensión es permitida
+            try {
+                await fs.unlink(file_path);  // Eliminar el archivo si no es permitido
 
-        const fileExtend = extendSplit[extendSplit.length - 1];  // Último elemento es la extensión
-
-        // Validar la extensión si es necesario
-        const allowedExtensions = ['jpg', 'jpeg', 'png', 'gif'];  // Ejemplo de extensiones permitidas
-        if (!allowedExtensions.includes(fileExtend.toLowerCase())) {
-
-            fs.unlink(filePath, (err) => {
                 return res.status(400).send({
                     status: 'error',
-                    message: 'Extensión de archivo no permitida',
+                    message: 'La extensión de la imagen no es válida!!!',
                 });
-            })
+            } catch (err) {
+                console.error('Error al eliminar el archivo:', err);
 
+                return res.status(500).send({
+                    status: 'error',
+                    message: 'Error al eliminar archivo con extensión no permitida',
+                });
+            }
         }
 
-        // Respuesta exitosa
-        return res.status(200).send({
-            fichero: req.files,
-            split: fileSplit,
-            fileName,
-            fileExtend,
-        });
+        const articleId = req.params.id;
+
+        if (articleId) {
+            try {
+                const articleUpdated = await Article.findOneAndUpdate(
+                    { _id: articleId },
+                    { image: file_name },
+                    { new: true }
+                );
+
+                if (!articleUpdated) {
+                    return res.status(404).send({
+                        status: 'error',
+                        message: 'Error al guardar la imagen del artículo!!!',
+                    });
+                }
+
+                return res.status(200).send({
+                    status: 'success',
+                    article: articleUpdated,
+                });
+            } catch (err) {
+                console.error('Error al actualizar el artículo:', err);
+
+                return res.status(500).send({
+                    status: 'error',
+                    message: 'Error al intentar guardar la imagen del artículo',
+                });
+            }
+        } else {
+            return res.status(200).send({
+                status: 'success',
+                image: file_name,
+            });
+        }
+
     },
 
     getImage: async (req, res) => {
