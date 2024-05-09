@@ -15,7 +15,7 @@ import { MovieComponent } from '../movie/movie.component';
 })
 export class MoviesComponent {
   titulo = 'Componente de peliculas'
-  favorita: Movie = { title: '', year: 0, image: '' }
+  favorita?: Movie
 
   peliculas: Movie[] = [
     new Movie('pelicula1', 2019, 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTCwIdMAbvNp--P_I6OX1w8vc0LRNWAAQuCobi-jm-bQQ&s'),

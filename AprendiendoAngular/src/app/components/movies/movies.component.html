@@ -2,6 +2,7 @@
 
 <div class="center">
   <section id="content">
+    @if (favorita) {
     <div id="favorita">
       <h2 class="subheader">Pelicula favorita</h2>
       {{ favorita.title }}
@@ -10,6 +11,7 @@
         {{ favorita.year }}
       </h4>
     </div>
+    }
 
     <h1 class="subheader">Peliculas</h1>
 
