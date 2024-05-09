@@ -1,0 +1,52 @@
+<app-slider nombre="Peliculas" size="small"></app-slider>
+
+<div class="center">
+  <section id="content">
+    <div id="favorita">
+      <h2 class="subheader">Pelicula favorita</h2>
+      {{ favorita.title }}
+      <h4></h4>
+      <h4>
+        {{ favorita.year }}
+      </h4>
+    </div>
+
+    <h1 class="subheader">Peliculas</h1>
+
+    <!-- 
+    <h2>{{ titulo }}</h2>
+    <button (click)="cambiarTitulo()">Pulsar</button>
+    <hr />
+
+    <h2>Mostrar primera pelicula</h2>
+    {{ peliculas[0].title }}
+
+    <hr />
+
+    @if (peliculas.length < 3) {
+    <h1>Hay pocas peliculas</h1>
+    } @else {
+    <h1>Hay muchas peliculas</h1>
+    }
+
+    {{ peliculas.length }}
+
+    <hr /> 
+    -->
+    <h2>Listado de peliculas</h2>
+    @if (peliculas) {
+    <!--AÑADIR ARTICULOS VIA JS-->
+    <div id="articles">
+      @for (pelicula of peliculas; track $index) {
+      <app-movie
+        [index]="$index"
+        [pelicula]="pelicula"
+        (Favorito)="Mostrar($event)"
+      ></app-movie>
+      }
+    </div>
+    }
+  </section>
+
+  <app-sidebar></app-sidebar>
+</div>

@@ -1,0 +1,18 @@
+<app-slider nombre="Página"></app-slider>
+
+<div class="center">
+  <section id="content">
+    <h1 class="subheader">Página de pruebas</h1>
+    @if (nombre && apellidos) {
+    <div>
+      <h2>El nombre es: {{ nombre }}</h2>
+      <h2>El apellido es: {{ apellidos }}</h2>
+    </div>
+    } @else {
+    <h2>No hay parametros por la URL</h2>
+    }
+
+    <button (click)="redireccionar()">Llevame al formulario</button>
+  </section>
+  <app-sidebar></app-sidebar>
+</div>
