@@ -5,11 +5,16 @@
     @if (favorita) {
     <div id="favorita">
       <h2 class="subheader">Pelicula favorita</h2>
-      {{ favorita.title }}
-      <h4></h4>
       <h4>
-        {{ favorita.year }}
+        {{ favorita.title | uppercase }}
+        <!-- Pipe usada -->>
       </h4>
+      <h4>
+        {{ favorita.year | espar }}
+      </h4>
+      <h5>
+        {{ fecha | date : "fullDate" }}
+      </h5>
     </div>
     }
 
