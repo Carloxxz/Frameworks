@@ -4,32 +4,74 @@
   <section id="content">
     <h1 class="subheader">Formularios</h1>
 
+    <!--
+    @if (userForm.get('nombre')?.value) {
+    <h2 class="subheader">Datos</h2>
+    <div id="datos">
+      <ul>
+        <li>{{ userForm.get("nombre")?.value }}</li>
+        <li>{{ userForm.get("apellidos")?.value }}</li>
+        <li>{{ userForm.get("bio")?.value }}</li>
+        <li>{{ userForm.get("genero")?.value }}</li>
+      </ul>
+    </div>
+    }
+    -->
+
     <form class="mid-form" [formGroup]="userForm" (submit)="onSubmit()">
       <div class="form-group">
         <label for="nombre">Nombre</label>
-        <input type="text" name="nombre" formControlName="nombre" />
+        <input
+          type="text"
+          name="nombre"
+          formControlName="nombre"
+          pattern="[a-zA-Z]+"
+        />
+
+        @if(userForm.get('nombre')?.invalid && userForm.get('nombre')?.touched){
+        <small> El nombre no es válido </small>
+        }
       </div>
 
       <div class="form-group">
         <label for="apellidos">Apellidos</label>
         <input type="text" name="apellidos" formControlName="apellidos" />
+
+        @if(userForm.get('apellidos')?.invalid &&
+        userForm.get('apellidos')?.touched){
+        <small> El apellido no es válido </small>
+        }
       </div>
 
       <div class="form-group">
         <label for="bio">Biografia</label>
         <textarea name="bio" formControlName="bio"></textarea>
+
+        @if(userForm.get('bio')?.invalid && userForm.get('bio')?.touched){
+        <small> La Biografia no es válido </small>
+        }
       </div>
 
-      <div class="form-group radibuttons" formControlName="genero">
-        <input type="radio" name="genero" value="hombre" /> Hombre
-        <input type="radio" name="genero" value="mujer" /> Mujer
-        <input type="radio" name="genero" value="otro" /> Otro
+      <div class="form-group radibuttons">
+        <input type="radio" value="hombre" formControlName="genero" /> Hombre
+        <input type="radio" value="mujer" formControlName="genero" /> Mujer
+        <input type="radio" value="otro" formControlName="genero" /> Otro
+        @if(userForm.get('genero')?.invalid && userForm.get('genero')?.touched){
+        <small> El genero no es válido </small>
+        }
       </div>
 
       <div class="clearfix"></div>
 
-      <input type="submit" value="Enviar" class="btn btn-success" />
+      <input
+        type="submit"
+        value="Enviar"
+        class="btn btn-success"
+        [disabled]="userForm.invalid"
+      />
     </form>
+
+
   </section>
 
   <app-sidebar></app-sidebar>

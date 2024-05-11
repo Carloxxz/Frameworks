@@ -1,7 +1,7 @@
 import { Component } from '@angular/core';
 import { SliderComponent } from '../slider/slider.component';
 import { SidebarComponent } from '../sidebar/sidebar.component';
-import { FormControl, FormGroup, FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { FormControl, FormGroup, FormsModule, ReactiveFormsModule, Validators } from '@angular/forms';
 
 @Component({
   selector: 'app-form',
@@ -13,11 +13,11 @@ import { FormControl, FormGroup, FormsModule, ReactiveFormsModule } from '@angul
 export class FormComponent {
 
   userForm = new FormGroup({
-    nombre: new FormControl(''),
-    apellidos: new FormControl(''),
-    bio: new FormControl(''),
-    genero: new FormControl('')
-  })
+    nombre: new FormControl('', Validators.required),
+    apellidos: new FormControl('', Validators.required),
+    bio: new FormControl('', Validators.required),
+    genero: new FormControl('', Validators.required)
+  });
 
   onSubmit() {
     alert("Enviado")
