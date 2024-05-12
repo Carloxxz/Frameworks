@@ -1,5 +1,7 @@
 <app-slider nombre="Blog" size="small"></app-slider>
 
+@if (article) {
+
 <div class="center">
   <section id="content">
     <h1 class="subheader">Nombre articulo</h1>
@@ -47,6 +49,7 @@
       <div class="clearfix"></div>
     </article>
   </section>
-
-  <app-sidebar></app-sidebar>
 </div>
+}
+
+<app-sidebar></app-sidebar>

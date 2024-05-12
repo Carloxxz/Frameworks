@@ -18,23 +18,26 @@ export class ArticleComponent implements OnInit {
   public article?: Article
 
   _articleService = inject(ArticleService)
-
-  constructor(private _route: ActivatedRoute, private _router: Router) { }
+  _route = inject(ActivatedRoute)
+  _router = inject(Router)
 
   ngOnInit() {
-    this._route.params.subscribe(params => {
-      const id = params['id'];
-
-      this._articleService.getArticle(id).subscribe(
-        response => {
-          this.article = response.article;
-        },
-        error => {
-          console.error(error);
-          this._router.navigate(['/home']); // Handle error and redirect
-        }
-      );
-    });
+    this._route.params.subscribe(
+      (params) => {
+        const id = params['id'];
+  
+        this._articleService.getArticle(id).subscribe(
+          {
+            next: (response) => (this.article = response.article),
+            error: (error) => {
+              console.error(error);
+              this._router.navigate(['/home']); // Handle error and redirect
+            },
+          }
+        );
+      }
+    );
   }
+  
 
 }
