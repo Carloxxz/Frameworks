@@ -8,8 +8,6 @@ import { MoviesComponent } from './components/movies/movies.component';
 import { HomeComponent } from './components/home/home.component';
 import { BlogComponent } from './components/blog/blog.component';
 import { PageComponent } from './components/page/page.component';
-import { FormComponent } from './components/form/form.component';
-
 
 @Component({
   selector: 'app-root',
@@ -22,7 +20,6 @@ import { FormComponent } from './components/form/form.component';
     MoviesComponent,
     HomeComponent,
     BlogComponent,
-    FormComponent,
     PageComponent],
   templateUrl: './app.component.html',
   styleUrl: './app.component.css'

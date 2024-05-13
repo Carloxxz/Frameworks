@@ -4,7 +4,6 @@ import { provideRouter, withComponentInputBinding } from '@angular/router';
 import { routes } from './app.routes';
 import { provideClientHydration } from '@angular/platform-browser';
 import { HttpClientModule, HttpClientXsrfModule, provideHttpClient, withFetch } from '@angular/common/http';
-import { MomentModule } from 'ngx-moment';
 
 
 

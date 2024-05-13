@@ -23,33 +23,39 @@ const controller = {
 
     save: async (req, res) => {
         const params = req.body;
-
+    
         try {
             const validateTitle = !validator.isEmpty(params.title);
             const validateContent = !validator.isEmpty(params.content);
-
+    
             if (!validateTitle || !validateContent) {
                 return res.status(400).send({
                     status: 'error',
                     message: 'Datos no válidos',
                 });
             }
-
-            const article = new Article({
+    
+            const articleData = {
                 title: params.title,
                 content: params.content,
-                image: null,
-            });
-
+                image: null, // No estás recibiendo la imagen en la solicitud, ajusta si es necesario
+                date: new Date().toISOString() // O ajusta la fecha según tus necesidades
+            };
+    
+            // Crea una nueva instancia de Article asignando las propiedades del objeto literal
+            const article = new Article();
+            Object.assign(article, articleData);
+    
+            // Guarda el artículo en la base de datos u otra operación necesaria
             const savedArticle = await article.save();
-
+    
             return res.status(201).send({
                 status: 'success',
                 article: savedArticle,
             });
         } catch (error) {
             console.error('Error al guardar el artículo:', error);
-
+    
             return res.status(500).send({
                 status: 'error',
                 message: 'Error al guardar el artículo',

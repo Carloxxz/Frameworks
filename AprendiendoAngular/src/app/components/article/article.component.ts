@@ -1,21 +1,25 @@
-import { Component, inject, Input, OnInit } from '@angular/core';
+import { Component, inject, OnInit } from '@angular/core';
 import { SliderComponent } from '../slider/slider.component';
 import { SidebarComponent } from '../sidebar/sidebar.component';
 import { ArticleService } from '../../services/article.service';
 import { Article } from '../../models/article';
 import { ActivatedRoute, Router } from '@angular/router';
+import { MomentModule } from 'ngx-moment';
+import { Global } from '../../services/global';
 
 
 @Component({
   selector: 'app-article',
   standalone: true,
-  imports: [SliderComponent, SidebarComponent],
+  imports: [SliderComponent, SidebarComponent, MomentModule],
   templateUrl: './article.component.html',
   styleUrl: './article.component.css'
 })
 export class ArticleComponent implements OnInit {
 
   public article?: Article
+
+  url: string = Global.url
 
   _articleService = inject(ArticleService)
   _route = inject(ActivatedRoute)

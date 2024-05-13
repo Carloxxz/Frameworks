@@ -2,15 +2,18 @@
     <div id="nav-blog" class="sidebar-item">
         <h3>Puedes hacer esto</h3>
         <a href="#" class="btn btn-success">Crear artículo</a>
+        <a routerLink="['blog/crear']"></a>
     </div>
 
     <div id="search" class="sidebar-item">
         <h3>Buscador</h3>
         <p>Encuentra el artículo que buscas</p>
-        <form>
-            <input type="text" name="search" />
-            <input type="submit" name="submit" value="Buscar" class="btn" />
-        </form>
+
+            <form [formGroup]="searchForm" (submit)="goSearch()">
+                <input type="text" name="search" formControlName="searchString"/>
+                <input type="submit" name="submit" value="Buscar" class="btn"/>
+            </form>
+
     </div>
 </aside>
 
