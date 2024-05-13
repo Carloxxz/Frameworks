@@ -1,8 +1,11 @@
 import mongoose from "mongoose"
 import { app } from './app.js'
+import { config } from "dotenv"
+
+config()
 
 const port = 3900
-const connectionString = 'mongodb+srv://carloxmz:2222102002@cluster0.dnc0uk1.mongodb.net/'
+const connectionString = process.env.MONGO_URL
 
 mongoose.connect(connectionString)
     // , {
