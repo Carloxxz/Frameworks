@@ -1,4 +1,4 @@
-import express, { Router } from "express";
+import { Router } from "express";
 import { controller } from "../controllers/articleController.js";
 import multipart from "connect-multiparty";
 
