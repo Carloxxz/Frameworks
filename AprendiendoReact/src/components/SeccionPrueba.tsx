@@ -1,5 +1,5 @@
 export default function SeccionPrueba() {
-  let nombre = "Carlos";
+  let nombre = "Carlos"
 
   let HolaMundo = (nombre: string, edad: number) => {
     return (

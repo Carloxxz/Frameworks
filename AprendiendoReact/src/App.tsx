@@ -3,7 +3,8 @@ import Header from "./components/Header";
 import Slider from "./components/Slider";
 import Siderbar from "./components/Siderbar";
 import Footer from "./components/Footer";
-import SeccionPrueba from "./components/SeccionPrueba";
+import Router from "./Router";
+
 
 function App() {
   return (
@@ -12,7 +13,8 @@ function App() {
       <Slider></Slider>
 
       <div className="center">
-        <SeccionPrueba></SeccionPrueba>
+        <Router />
+        {/* <Peliculas></Peliculas> */}
         <Siderbar></Siderbar>
         <div className="clearfix"></div>
       </div>
