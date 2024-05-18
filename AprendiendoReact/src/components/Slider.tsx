@@ -1,12 +1,15 @@
-export default function Slider() {
+export default function Slider({ title, btn, size }: { title: string, btn?: string, size?: string }) {
   return (
-    <div id="slider" className="slider-big">
+    <div id="slider" className={size}>
       <h1>
-        Bienvenido al Curso de React con Víctor Robles de victorroblesweb.es
+        {title}
       </h1>
-      <a href="#" className="btn-white">
-        Ir al blog
-      </a>
+      {
+        btn &&
+        <a href="#" className="btn-white">
+          {btn}
+        </a>
+      }
     </div>
   );
 }

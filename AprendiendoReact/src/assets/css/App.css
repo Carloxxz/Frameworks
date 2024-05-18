@@ -91,6 +91,10 @@ body {
   color: #3cb2d3;
 }
 
+.active {
+  border-bottom: 2px solid #3cb2d3
+}
+
 #slider {
   width: 100%;
   height: 350px;
@@ -419,8 +423,8 @@ textarea {
     font-size: 19px;
     padding-top: 30px;
   }
-‡
-  #slider .btn-white {
+
+  ‡ #slider .btn-white {
     margin-top: 20px;
   }
 

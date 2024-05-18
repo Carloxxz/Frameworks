@@ -1,6 +1,8 @@
 import { useEffect, useState } from "react";
 import Pelicula from "./Pelcicula";
-import PeliculaI from "../Interfaces";
+import { PeliculaI } from "../Interfaces";
+import Slider from "./Slider";
+import Siderbar from "./Siderbar";
 
 export default function Peliculas() {
 
@@ -41,32 +43,40 @@ export default function Peliculas() {
     };
 
     return (
-        <div id="content" className="peliculas">
-            <h2 className="subheader">Peliculas</h2>
-            <p>Selección de las peliculas favoritas</p>
-            <p><button onClick={cambiarTitulo}>Cambiar</button></p>
+        <>
+            <Slider
+                title="Peliculas"
+            />
+            <div className="center">
+                <div id="content" className="peliculas">
+                    <h2 className="subheader">Listado de peliculas</h2>
+                    <p>Selección de las peliculas favoritas</p>
+                    <p><button onClick={cambiarTitulo}>Cambiar</button></p>
 
-            {titulo.favorita && (
-                <p className="favorita" style={{
-                    background: 'green',
-                    color: 'white',
-                    padding: '10px'
-                }}>
-                    <strong>La pelicula favorita es: </strong>
-                    <span>{titulo.favorita.titulo}</span>
-                </p>
-            )}
+                    {titulo.favorita && (
+                        <p className="favorita" style={{
+                            background: 'green',
+                            color: 'white',
+                            padding: '10px'
+                        }}>
+                            <strong>La pelicula favorita es: </strong>
+                            <span>{titulo.favorita.titulo}</span>
+                        </p>
+                    )}
 
-            <div id="articles" className="peliculas">
-                {titulo.peliculas.map((pelicula, i) => (
-                    <Pelicula
-                        key={i}
-                        indice={i}
-                        pelicula={pelicula}
-                        marcarFavorita={favorita}
-                    />
-                ))}
+                    <div id="articles" className="peliculas">
+                        {titulo.peliculas.map((pelicula, i) => (
+                            <Pelicula
+                                key={i}
+                                indice={i}
+                                pelicula={pelicula}
+                                marcarFavorita={favorita}
+                            />
+                        ))}
+                    </div>
+                    <Siderbar />
+                </div>
             </div>
-        </div>
+        </>
     );
 }

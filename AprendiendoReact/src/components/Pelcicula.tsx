@@ -1,4 +1,4 @@
-import PeliculaI from "../Interfaces";
+import { PeliculaI } from "../Interfaces";
 
 export default function Pelicula({ pelicula, marcarFavorita, indice }: { pelicula: PeliculaI, marcarFavorita: (pelicula: PeliculaI, indice: number) => void, indice: number }) {
 

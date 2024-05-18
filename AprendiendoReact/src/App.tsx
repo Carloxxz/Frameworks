@@ -1,24 +1,11 @@
 import "./assets/css/App.css";
-import Header from "./components/Header";
-import Slider from "./components/Slider";
-import Siderbar from "./components/Siderbar";
-import Footer from "./components/Footer";
 import Router from "./Router";
 
 
 function App() {
   return (
     <>
-      <Header></Header>
-      <Slider></Slider>
-
-      <div className="center">
         <Router />
-        {/* <Peliculas></Peliculas> */}
-        <Siderbar></Siderbar>
-        <div className="clearfix"></div>
-      </div>
-      <Footer></Footer>
     </>
   );
 }

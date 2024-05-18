@@ -1,6 +1,10 @@
 import logo from "../assets/images/react.svg";
+import { Link, useLocation } from "react-router-dom";
 
 export default function Header() {
+  
+  const location = useLocation()
+
   return (
     <header id="header">
       <div className="center">
@@ -16,19 +20,19 @@ export default function Header() {
         <nav id="menu">
           <ul>
             <li>
-              <a href="index.html">Inicio</a>
+              <Link to="/home" className={location.pathname == '/home' ? 'active' : ''}>Inicio</Link>
             </li>
             <li>
-              <a href="blog.html">Blog</a>
+              <Link to="/blog" className={location.pathname == '/blog' ? 'active' : ''}>Blog</ Link>
             </li>
             <li>
-              <a href="formulario.html">Formulario</a>
+              <Link to="/formulario" className={location.pathname == '/formulario' ? 'active' : ''}>Formulario</Link>
             </li>
             <li>
-              <a href="#">Pagina 1</a>
+              <Link to="/peliculas" className={location.pathname == '/peliculas' ? 'active' : ''}>Peliculas</Link>
             </li>
             <li>
-              <a href="#">Pagina 2</a>
+              <Link to="#" className={location.pathname == '' ? 'active' : ''}>Pagina 2</Link>
             </li>
           </ul>
         </nav>
