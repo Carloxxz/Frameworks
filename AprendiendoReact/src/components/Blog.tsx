@@ -1,6 +1,6 @@
 import Slider from "./Slider"
 import Siderbar from "./Siderbar"
-import Articles from "./articles"
+import Articles from "./Articles"
 
 export default function Blog() {
 
