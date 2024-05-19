@@ -9,6 +9,7 @@ import Formulario from "./components/Formulario";
 import Search from "./components/Search";
 import Article from "./components/Article";
 import CreateArticle from "./components/CreateArticle";
+import EditArticle from "./components/EditArticle";
 
 export default function Router() {
     return (
@@ -20,6 +21,7 @@ export default function Router() {
                 <Route path="/blog" element={<Blog />} />
                 <Route path="/blog/articulo/:id" element={<Article />} />
                 <Route path="/blog/crear" element={<CreateArticle />} />
+                <Route path="/blog/editar/:id" element={<EditArticle />} />
                 <Route path="/blog/busqueda/:search" element={<Search />} />
                 <Route path="/redirect/:search" element={<RedirectToSearch />} />
                 <Route path="/formulario" element={<Formulario />} />

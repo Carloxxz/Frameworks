@@ -18,11 +18,6 @@ export type ApiResponse = {
 
 export type ApiArticleResponse = {
     status: string
-    article: {
-        _id?: string,
-        title?: string,
-        date?: string,
-        content?: string,
-        image?: string
-    }
+    article: Partial<Article>
 }
+

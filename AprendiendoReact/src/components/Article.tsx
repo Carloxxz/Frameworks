@@ -51,9 +51,7 @@ export default function Article() {
                 <p>
                     {content}
                 </p>
-                <button onClick={() => {
-                    deleteArticle()
-                }} className="btn btn-warning">Editar</button>
+                <Link to={`/blog/editar/${article.article._id}`} className="btn btn-warning">Editar</Link>
                 <button onClick={() => {
                     deleteArticle()
                 }} className="btn btn-danger">Eliminar</button>
