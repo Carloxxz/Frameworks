@@ -2,7 +2,7 @@ import { useEffect, useState } from "react";
 import Pelicula from "./Pelcicula";
 import { PeliculaI } from "../Interfaces";
 import Slider from "./Slider";
-import Siderbar from "./Siderbar";
+import Siderbar from "./Sidebar";
 
 export default function Peliculas() {
 
@@ -45,6 +45,7 @@ export default function Peliculas() {
     return (
         <>
             <Slider
+                size="slider-small"
                 title="Peliculas"
             />
             <div className="center">

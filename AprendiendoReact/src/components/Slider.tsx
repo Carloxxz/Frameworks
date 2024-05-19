@@ -1,3 +1,5 @@
+import { Link } from "react-router-dom";
+
 export default function Slider({ title, btn, size }: { title: string, btn?: string, size?: string }) {
   return (
     <div id="slider" className={size}>
@@ -6,9 +8,9 @@ export default function Slider({ title, btn, size }: { title: string, btn?: stri
       </h1>
       {
         btn &&
-        <a href="#" className="btn-white">
+        <Link to="/blog" className="btn-white">
           {btn}
-        </a>
+        </ Link>
       }
     </div>
   );

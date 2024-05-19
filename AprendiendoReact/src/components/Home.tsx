@@ -1,5 +1,6 @@
 import Slider from "./Slider"
-import Siderbar from "./Siderbar"
+import Siderbar from "./Sidebar"
+import Articles from "./Articles"
 
 export default function Home() {
     return (
@@ -12,8 +13,9 @@ export default function Home() {
             <div className="center">
                 <div className="center">
                     <h1>Ultimos Articulos</h1>
-                    <Siderbar></Siderbar>
+                    <Articles home='true' />
                 </div>
+                <Siderbar></Siderbar>
             </div>
 
         </div >

@@ -31,9 +31,6 @@ export default function Header() {
             <li>
               <Link to="/peliculas" className={location.pathname == '/peliculas' ? 'active' : ''}>Peliculas</Link>
             </li>
-            <li>
-              <Link to="#" className={location.pathname == '' ? 'active' : ''}>Pagina 2</Link>
-            </li>
           </ul>
         </nav>
 

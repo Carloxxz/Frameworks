@@ -1,3 +1,4 @@
+import { Link } from "react-router-dom";
 import { PeliculaI } from "../Interfaces";
 
 export default function Pelicula({ pelicula, marcarFavorita, indice }: { pelicula: PeliculaI, marcarFavorita: (pelicula: PeliculaI, indice: number) => void, indice: number }) {
@@ -15,7 +16,7 @@ export default function Pelicula({ pelicula, marcarFavorita, indice }: { pelicul
             <span className="date">
                 Hace 5 minutos
             </span>
-            <a href="#">Leer más</a>
+            <Link to="/blog">Leer más</Link>
             <button onClick={marcar}>
                 Marcar como favorita
             </button>

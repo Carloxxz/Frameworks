@@ -2,13 +2,22 @@ import { useState, useEffect } from "react";
 import { ApiResponse } from "../Interfaces";
 import axios from "axios";
 import { Global } from "../Global";
+import { Link } from "react-router-dom";
 
-export default function Articles() {
+export default function Articles({ home, search }: { home?: string, search?: any}) {
     const [loading, setLoading] = useState(true);
     const [articleApi, setArticleApi] = useState<ApiResponse>({ status: '', articles: [] });
 
     useEffect(() => {
-        axios.get<ApiResponse>(`${Global.url}articles`)
+        let url = `${Global.url}articles`;
+        if (home === 'true') {
+            url = `${Global.url}articles/last`;
+        } else if (search) {
+            url = `${Global.url}search/${search}`
+            console.log(url)
+        }
+
+        axios.get<ApiResponse>(url)
             .then((res) => {
                 setArticleApi(res.data);
                 setLoading(false); // Cambiar el estado de carga cuando se carguen los datos
@@ -17,7 +26,7 @@ export default function Articles() {
                 console.error(error);
                 setLoading(false); // Cambiar el estado de carga en caso de error
             });
-    }, []);
+    }, [home, search]);
 
     // Función para renderizar los artículos
     const renderArticles = () => {
@@ -35,7 +44,7 @@ export default function Articles() {
                     </div>
                     <h2>{article.title}</h2>
                     <span className="date">{article.date}</span>
-                    <a href="#">Leer más</a>
+                    <Link to={'/blog/articulo/' + article._id}>Leer más</Link>
                     <div className="clearfix"></div>
                 </article>
             ))

@@ -38,7 +38,7 @@ const controller = {
             const articleData = {
                 title: params.title,
                 content: params.content,
-                image: null, // No estás recibiendo la imagen en la solicitud, ajusta si es necesario
+                image: null || params.image, // No estás recibiendo la imagen en la solicitud, ajusta si es necesario
                 date: new Date().toISOString() // O ajusta la fecha según tus necesidades
             };
     

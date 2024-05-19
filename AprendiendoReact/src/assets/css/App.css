@@ -209,6 +209,19 @@ body {
   background: black;
 }
 
+.btn-danger {
+  background: rgb(250, 0, 0) !important;
+  color: white !important;
+  float: left;
+}
+
+.btn-warning {
+  background: rgb(23, 150, 19) !important;
+  color: white !important;
+  float: left;
+  margin-right: 20px;
+}
+
 .mid-form {
   width: 50%;
   margin: 0px auto;
@@ -224,13 +237,18 @@ body {
 }
 
 input[type="text"],
-textarea {
+textarea,
+input[type="file"] {
   width: 100%;
   min-height: 30px;
   border: 1px solid #ccc;
   padding: 3px;
   margin-bottom: 5px;
   transition: 300ms all;
+}
+
+input[type="submit"] {
+  margin-top: 15px;
 }
 
 input[type="text"]:focus,

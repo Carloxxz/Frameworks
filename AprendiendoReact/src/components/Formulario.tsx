@@ -1,5 +1,5 @@
 import { FormEvent, useState } from "react";
-import Siderbar from "./Siderbar";
+import Siderbar from "./Sidebar";
 
 export default function Formulario() {
     const [userForm, setUserForm] = useState({
